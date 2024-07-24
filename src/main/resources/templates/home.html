@@ -58,11 +58,19 @@
       * {
         font-family: Pretendard Variable;
       }
+      .w-fileLabelWidth {
+        width: 85px;
+      }
       .imFellDwPica {
         font-family: 'IM Fell DW Pica', serif;
       }
       main {
         height: 100vh;
+      }
+      .col-6 {
+        min-width: 150px;
+        min-height: 150px;
+        align-content: center;
       }
       .rotateOrPrint {
         margin-top: -35px;
@@ -72,7 +80,6 @@
         display: inline-block;
         color: #5b9bd5;
       }
-
       .list-group-item.active,
       .btn-primary,
       .bg_main {
@@ -87,7 +94,7 @@
         class="d-flex justify-content-center align-items-center flex-grow-1 bg-secondary bg-opacity-10"
       >
         <div
-          class="row p-3 border rounded shadow align-items-center bg-white position-relative"
+          class="idCard row p-3 border rounded shadow align-items-center bg-white position-relative"
         >
           <div class="position-absolute top-0 end-0 rotateOrPrint text-end p-0">
             <button class="btn btn-light btn-sm">
@@ -106,7 +113,7 @@
           </div>
           <div class="col-6">
             <p class="fs-5 fw-semibold">테스트</p>
-            <p class="fs-6">
+            <p class="fs-6 mb-0">
               010-0000-0000<br />
               sh@bicns.com
             </p>
@@ -226,7 +233,95 @@
           </a>
         </div>
         <div class="d-grid p-3 bg-white">
-          <button class="btn btn-primary">새 명함 만들기</button>
+          <button
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            aria-hidden="true"
+          >
+            새 명함 만들기
+          </button>
+          <div
+            class="modal fade"
+            id="staticBackdrop"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                    새 명함 만들기
+                    <!--명함 수정하기-->
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group mb-2">
+                    <span
+                      class="input-group-text w-fileLabelWidth"
+                      id="basic-addon1"
+                      >이름</span
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="이름"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                  <div class="input-group mb-2">
+                    <span
+                      class="input-group-text w-fileLabelWidth"
+                      id="basic-addon1"
+                      >전화번호</span
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="000-0000-0000"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                  <div class="input-group mb-2">
+                    <span
+                      class="input-group-text w-fileLabelWidth"
+                      id="basic-addon1"
+                      >이메일</span
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="example@standout.com"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                  <input class="form-control" id="formFileSm" type="file" />
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    취소
+                  </button>
+                  <button type="button" class="btn btn-primary">완료</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
