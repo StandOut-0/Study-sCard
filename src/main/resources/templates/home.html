@@ -41,15 +41,43 @@
       rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
-    />    
+    />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
     <!-- <link rel="stylesheet" href="/css/styles.css" /> -->
 
     <style>
+      * {
+        font-family: Pretendard Variable;
+      }
+      .imFellDwPica {
+        font-family: 'IM Fell DW Pica', serif;
+      }
       main {
         height: 100vh;
       }
       .rotateOrPrint {
         margin-top: -35px;
+      }
+      .symbol {
+        transform: translateX(1px) scaleX(-1) scale(1.5) translateY(2px);
+        display: inline-block;
+        color: #5b9bd5;
+      }
+
+      .list-group-item.active,
+      .btn-primary,
+      .bg_main {
+        background: #5b9bd5 !important;
+        border-color: #5b9bd5 !important;
       }
     </style>
   </head>
@@ -62,8 +90,12 @@
           class="row p-3 border rounded shadow align-items-center bg-white position-relative"
         >
           <div class="position-absolute top-0 end-0 rotateOrPrint text-end p-0">
-            <button class="btn btn-light btn-sm"><i class="fa-solid fa-arrows-rotate"></i></button>
-            <button class="btn btn-light btn-sm"><i class="fa-solid fa-print"></i></button>
+            <button class="btn btn-light btn-sm">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+            <button class="btn btn-light btn-sm">
+              <i class="fa-solid fa-print"></i>
+            </button>
           </div>
           <div class="col-6">
             <img
@@ -87,16 +119,18 @@
       >
         <a
           href="/"
-          class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom"
+          class="d-flex align-items-center justify-content-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom bg-white"
         >
-          <span class="fs-5 fw-semibold">테스트</span>
+          <span class="fs-4 fw-semibold">
+            <span class="imFellDwPica symbol">"</span>&nbsp;&nbsp;sCard</span
+          >
         </a>
         <div
           class="list-group list-group-flush border-bottom h-100 overflow-auto"
         >
           <a
             href="#"
-            class="list-group-item list-group-item-action active py-3 lh-sm"
+            class="list-group-item list-group-item-action py-3 lh-sm"
             aria-current="true"
           >
             <div
@@ -112,7 +146,7 @@
           </a>
           <a
             href="#"
-            class="list-group-item list-group-item-action py-3 lh-sm"
+            class="list-group-item list-group-item-action py-3 lh-sm active"
             aria-current="true"
           >
             <div
@@ -191,7 +225,7 @@
             </div>
           </a>
         </div>
-        <div class="d-grid p-3">
+        <div class="d-grid p-3 bg-white">
           <button class="btn btn-primary">새 명함 만들기</button>
         </div>
       </div>
@@ -202,6 +236,9 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <script src="https://kit.fontawesome.com/e969114065.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/e969114065.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
