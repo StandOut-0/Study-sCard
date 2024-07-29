@@ -132,11 +132,15 @@
           class="d-flex align-items-center justify-content-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom bg-white"
         >
           <span class="fs-4 fw-semibold">
-            <span class="imFellDwPica symbol">"</span>&nbsp;&nbsp;sCard</span
-          >
+            <span class="imFellDwPica symbol">"</span>&nbsp;&nbsp;sCard
+            <span class="fs-6 text-secondary"
+              >(total: <span th:text="${selectCountAll}">No result</span>)</span
+            >
+          </span>
         </a>
         <div
           class="list-group list-group-flush border-bottom h-100 overflow-auto"
+          th:each="person : ${persons}"
         >
           <a
             href="#"
@@ -146,92 +150,12 @@
             <div
               class="d-flex w-100 align-items-center justify-content-between"
             >
-              <strong class="mb-1">테스트</strong>
-              <small>테스트</small>
+              <strong class="mb-1" th:text="${person.name}">000</strong>
+              <small th:text="${person.id}">0</small>
             </div>
-            <div class="col-10 mb-1 small">
-              010-0000-0000<br />
-              sh@bicns.com
-            </div>
-          </a>
-          <a
-            href="#"
-            class="list-group-item list-group-item-action py-3 lh-sm active"
-            aria-current="true"
-          >
-            <div
-              class="d-flex w-100 align-items-center justify-content-between"
-            >
-              <strong class="mb-1">테스트</strong>
-              <small>테스트</small>
-            </div>
-            <div class="col-10 mb-1 small">
-              010-0000-0000<br />
-              sh@bicns.com
-            </div>
-          </a>
-          <a
-            href="#"
-            class="list-group-item list-group-item-action py-3 lh-sm"
-            aria-current="true"
-          >
-            <div
-              class="d-flex w-100 align-items-center justify-content-between"
-            >
-              <strong class="mb-1">테스트</strong>
-              <small>테스트</small>
-            </div>
-            <div class="col-10 mb-1 small">
-              010-0000-0000<br />
-              sh@bicns.com
-            </div>
-          </a>
-          <a
-            href="#"
-            class="list-group-item list-group-item-action py-3 lh-sm"
-            aria-current="true"
-          >
-            <div
-              class="d-flex w-100 align-items-center justify-content-between"
-            >
-              <strong class="mb-1">테스트</strong>
-              <small>테스트</small>
-            </div>
-            <div class="col-10 mb-1 small">
-              010-0000-0000<br />
-              sh@bicns.com
-            </div>
-          </a>
-          <a
-            href="#"
-            class="list-group-item list-group-item-action py-3 lh-sm"
-            aria-current="true"
-          >
-            <div
-              class="d-flex w-100 align-items-center justify-content-between"
-            >
-              <strong class="mb-1">테스트</strong>
-              <small>테스트</small>
-            </div>
-            <div class="col-10 mb-1 small">
-              010-0000-0000<br />
-              sh@bicns.com
-            </div>
-          </a>
-          <a
-            href="#"
-            class="list-group-item list-group-item-action py-3 lh-sm"
-            aria-current="true"
-          >
-            <div
-              class="d-flex w-100 align-items-center justify-content-between"
-            >
-              <strong class="mb-1">테스트</strong>
-              <small>테스트</small>
-            </div>
-            <div class="col-10 mb-1 small">
-              010-0000-0000<br />
-              sh@bicns.com
+            <div class="col-10 mb-1 small" th:inline="text">
+              [[${person.cellphone}]]<br />
+              [[${person.email}]]
             </div>
           </a>
         </div>

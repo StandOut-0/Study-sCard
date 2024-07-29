@@ -1,0 +1,12 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.standout.scard.main.MainDao">
+
+    <select id="selectCountAll" resultType="int">
+        SELECT COUNT(*) FROM PERSON
+    </select>
+   <select id="selectPersonAll" resultType="com.standout.scard.main.MainVO">
+        SELECT * FROM PERSON
+    </select>
+</mapper>

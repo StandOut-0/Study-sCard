@@ -1,32 +1,28 @@
 package com.standout.scard.main;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import org.springframework.ui.Model;
 
 @Controller
 public class MainController {
 
 	 @Autowired
-	 private JdbcTemplate jdbcTemplate;
+	 private MainDao mainDao ;
 	 
 	@GetMapping("/")
-	public String home() {
+	public String home(Model model) throws Exception {
+		Integer selectCountAll = mainDao.selectCountAll();
+		model.addAttribute("selectCountAll", selectCountAll);
+		
+		List<MainVO> selectPersonAll = mainDao.selectPersonAll();
+		model.addAttribute("persons", selectPersonAll);
+		System.out.println(selectPersonAll);
 		return "home";
 	}
 	
-	 @GetMapping("/test-db")
-	    @ResponseBody
-	    public String testDatabaseConnection() {
-	        try {
-	            // 간단한 쿼리 실행으로 연결 테스트
-	            Integer result = jdbcTemplate.queryForObject("SELECT 1", Integer.class);
-	            return "Database connection test result: " + result;
-	        } catch (Exception e) {
-	            return "Database connection test failed: " + e.getMessage();
-	        }
-	    }
-
 }
