@@ -12,14 +12,14 @@ import org.springframework.ui.Model;
 public class MainController {
 
 	 @Autowired
-	 private MainDao mainDao ;
+	 private MainService mainService ;
 	 
 	@GetMapping("/")
 	public String home(Model model) throws Exception {
-		Integer selectCountAll = mainDao.selectCountAll();
+		Integer selectCountAll = mainService.selectCountAll();
 		model.addAttribute("selectCountAll", selectCountAll);
 		
-		List<MainVO> selectPersonAll = mainDao.selectPersonAll();
+		List<MainVO> selectPersonAll = mainService.selectPersonAll();
 		model.addAttribute("persons", selectPersonAll);
 		System.out.println(selectPersonAll);
 		return "home";
