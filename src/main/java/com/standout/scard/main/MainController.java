@@ -21,7 +21,6 @@ public class MainController {
 		
 		List<MainVO> selectPersonAll = mainService.selectPersonAll();
 		model.addAttribute("persons", selectPersonAll);
-		System.out.println(selectPersonAll);
 		return "home";
 	}
 	

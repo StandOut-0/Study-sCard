@@ -98,6 +98,8 @@
       >
         <div
           class="idCard row p-3 border rounded shadow align-items-center bg-white position-relative"
+          th:each="person, onlyFirst : ${persons}"
+          th:if="${onlyFirst.index == 0}"
         >
           <div class="position-absolute top-0 end-0 rotateOrPrint text-end p-0">
             <button class="btn btn-light btn-sm">
@@ -115,10 +117,12 @@
             />
           </div>
           <div class="col-6">
-            <p class="fs-5 fw-semibold">테스트</p>
-            <p class="fs-6 mb-0">
-              010-0000-0000<br />
-              sh@bicns.com
+            <p class="fs-5 fw-semibold data_name" th:text="${person.name}">
+              null
+            </p>
+            <p class="fs-6 mb-0 data_cellphoneAndeEmail">
+              [[${person.cellphone}]]<br />
+              [[${person.email}]]
             </p>
           </div>
         </div>
@@ -140,25 +144,54 @@
         </a>
         <div
           class="list-group list-group-flush border-bottom h-100 overflow-auto"
-          th:each="person : ${persons}"
         >
-          <a
-            href="#"
-            class="list-group-item list-group-item-action py-3 lh-sm"
-            aria-current="true"
+          <div
+            th:each="person : ${persons}"
+            class="list-group-item list-group-item-action py-3 lh-sm person"
+            th:classappend="'person_' + ${person.id}"
+            th:attr="onclick='viewThisPerson(event, '+${person.id}+')'"
+            th:data-name="${person.name}"
+            th:data-cellphone="${person.cellphone}"
+            th:data-email="${person.email}"
           >
             <div
               class="d-flex w-100 align-items-center justify-content-between"
             >
-              <strong class="mb-1" th:text="${person.name}">000</strong>
-              <small th:text="${person.id}">0</small>
+              <strong
+                class="mb-1"
+                th:classappend="person_name"
+                th:text="${person.name}"
+                >000</strong
+              >
+              <small th:text="${person.id}">null</small>
             </div>
             <div class="col-10 mb-1 small" th:inline="text">
               [[${person.cellphone}]]<br />
               [[${person.email}]]
             </div>
-          </a>
+          </div>
         </div>
+
+        <script>
+          document
+            .querySelector('.list-group')
+            .firstElementChild.classList.add('active');
+          function viewThisPerson(event, id) {
+            document
+              .querySelectorAll('.list-group-item.active')
+              .forEach((item) => item.classList.remove('active'));
+
+            document.querySelector('.person_' + id).classList.add('active');
+
+            const element = event.currentTarget;
+            const name = element.dataset.name;
+            document.querySelector('.data_name').innerText =
+              element.dataset.name;
+            document.querySelector('.data_cellphoneAndeEmail').innerHTML =
+              element.dataset.cellphone + '<br />' + element.dataset.email;
+          }
+        </script>
+
         <div class="d-grid p-3 bg-white">
           <button
             class="btn btn-primary"
