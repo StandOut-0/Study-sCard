@@ -131,8 +131,8 @@
             class="btn btn-primary btn-edit"
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
-            aria-hidden="true"
             data-bs-title="명함 수정하기"
+            data-bs-action="/update"
             th:attr="data-bs-id=${person.id}
             , data-bs-name=${person.name}
             , data-bs-cellphone=${person.cellphone}
@@ -165,6 +165,7 @@
             class="list-group-item list-group-item-action py-3 lh-sm person"
             th:classappend="'person_' + ${person.id}"
             th:attr="onclick='viewThisPerson(event, '+${person.id}+')'"
+            th:data-id="${person.id}"
             th:data-name="${person.name}"
             th:data-cellphone="${person.cellphone}"
             th:data-email="${person.email}"
@@ -206,6 +207,7 @@
             document.querySelector('.data_cellphoneAndeEmail').innerHTML =
               caller.dataset.cellphone + '<br />' + caller.dataset.email;
 
+            btn_edit.setAttribute('data-bs-id', caller.dataset.id);
             btn_edit.setAttribute('data-bs-name', caller.dataset.name);
             btn_edit.setAttribute(
               'data-bs-cellphone',
@@ -220,8 +222,8 @@
             class="btn btn-primary"
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
-            aria-hidden="true"
             data-bs-title="새 명함 만들기"
+            data-bs-action="/create"
           >
             새 명함 만들기
           </button>
@@ -235,7 +237,6 @@
         data-bs-keyboard="false"
         tabindex="-1"
         aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -248,56 +249,71 @@
                 aria-label="Close"
               ></button>
             </div>
-            <form action="/create" method="post" enctype="multipart/form-data">
-            <div class="modal-body">
-              <div class="input-group mb-2">
-                <span class="input-group-text w-fileLabelWidth">이름</span>
+            <form
+              id="modalForm"
+              action="/create"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <div class="modal-body">
+                <div class="input-group mb-2">
+                  <span class="input-group-text w-fileLabelWidth">이름</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="이름"
+                    aria-label="Username"
+                    aria-describedby="data-name"
+                    id="data-name"
+                    name="name"
+                  />
+                </div>
+                <div class="input-group mb-2">
+                  <span class="input-group-text w-fileLabelWidth"
+                    >전화번호</span
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="000-0000-0000"
+                    aria-label="Username"
+                    aria-describedby="data-cellphone"
+                    id="data-cellphone"
+                    name="cellphone"
+                  />
+                </div>
+                <div class="input-group mb-2">
+                  <span class="input-group-text w-fileLabelWidth">이메일</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="example@standout.com"
+                    aria-label="Username"
+                    aria-describedby="data-email"
+                    id="data-email"
+                    name="email"
+                  />
+                </div>
+                <input class="form-control" id="formFileSm" type="file" />
                 <input
+                  name="id"
+                  aria-describedby="data-id"
                   type="text"
-                  class="form-control"
-                  placeholder="이름"
-                  aria-label="Username"
-                  aria-describedby="data-name"
-                  id="data-name"
-                   name="name"
+                  value=""
+                  id="data-id"
+                  hidden
                 />
               </div>
-              <div class="input-group mb-2">
-                <span class="input-group-text w-fileLabelWidth">전화번호</span>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="000-0000-0000"
-                  aria-label="Username"
-                  aria-describedby="data-cellphone"
-                  id="data-cellphone"
-                  name="cellphone"
-                />
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  취소
+                </button>
+                <button type="submit" class="btn btn-primary">완료</button>
               </div>
-              <div class="input-group mb-2">
-                <span class="input-group-text w-fileLabelWidth">이메일</span>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="example@standout.com"
-                  aria-label="Username"
-                  aria-describedby="data-email"
-                  id="data-email"
-                  name="email"
-                />
-              </div>
-              <input class="form-control" id="formFileSm" type="file" />
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                취소
-              </button>
-              <button type="submit" class="btn btn-primary">완료</button>
-            </div>
             </form>
           </div>
         </div>
@@ -309,8 +325,13 @@
           modal.addEventListener('show.bs.modal', (event) => {
             const caller = event.relatedTarget;
 
+            document.querySelector('#modalForm').action =
+              caller.dataset.bsAction;
             modal.querySelector('.modal-title').textContent =
               caller.dataset.bsTitle;
+
+            modal.querySelector('.modal-body #data-id').value = 
+             caller.dataset.bsId || '';
             modal.querySelector('.modal-body #data-name').value =
               caller.dataset.bsName || '';
 

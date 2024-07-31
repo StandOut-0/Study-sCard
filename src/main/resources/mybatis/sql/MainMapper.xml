@@ -10,7 +10,12 @@
         SELECT * FROM PERSON
     </select>
 
-     <insert id="insertPerson" parameterType="com.standout.scard.main.MainVO">
+    <insert id="insertPerson" parameterType="com.standout.scard.main.MainVO">
         INSERT INTO PERSON (name, cellphone, email) VALUES (#{name}, #{cellphone}, #{email})
     </insert>
+    
+    <update id="updatePerson" parameterType="com.standout.scard.main.MainVO">
+        UPDATE person SET name = #{name}, cellphone = #{cellphone}, email = #{email} WHERE id = #{id}
+	</update>
+    
 </mapper>

@@ -14,5 +14,7 @@ public class MainService {
 	public List<MainVO> selectPersonAll() {return maindao.selectPersonAll();}
 
 	public void insertPerson(MainVO item) {maindao.insertPerson(item);}
+	public void updatePerson(MainVO item) {maindao.updatePerson(item);}
 }
+
 

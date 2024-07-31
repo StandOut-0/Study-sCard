@@ -31,5 +31,10 @@ public class MainController {
         return "redirect:/";
     }
 	
+	@PostMapping("/update")
+    public String updatePerson(@ModelAttribute MainVO person) {
+		mainService.updatePerson(person);
+        return "redirect:/";
+    }
 	
 }

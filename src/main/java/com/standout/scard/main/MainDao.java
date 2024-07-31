@@ -10,4 +10,5 @@ public interface MainDao {
 	List<MainVO> selectPersonAll();
 
 	void insertPerson(MainVO person);
+	void updatePerson(MainVO person);
 }
