@@ -17,5 +17,9 @@
     <update id="updatePerson" parameterType="com.standout.scard.main.MainVO">
         UPDATE person SET name = #{name}, cellphone = #{cellphone}, email = #{email} WHERE id = #{id}
 	</update>
+	
+	<delete id="deletePerson" parameterType="int">
+        DELETE FROM person WHERE id = #{id}
+    </delete>
     
 </mapper>

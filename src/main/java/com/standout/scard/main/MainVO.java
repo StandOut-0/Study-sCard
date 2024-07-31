@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class MainVO {
-	private int id;
+	private Integer id;
 	private String name;
 	private String cellphone;
 	private String email;

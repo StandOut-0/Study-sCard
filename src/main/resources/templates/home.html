@@ -132,7 +132,7 @@
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
             data-bs-title="명함 수정하기"
-            data-bs-action="/update"
+            onclick="chageActionValue(event, '/update')"
             th:attr="data-bs-id=${person.id}
             , data-bs-name=${person.name}
             , data-bs-cellphone=${person.cellphone}
@@ -223,7 +223,7 @@
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
             data-bs-title="새 명함 만들기"
-            data-bs-action="/create"
+            onclick="chageActionValue(event, '/create')"
           >
             새 명함 만들기
           </button>
@@ -299,18 +299,18 @@
                   name="id"
                   aria-describedby="data-id"
                   type="text"
-                  value=""
+                  value="0"
                   id="data-id"
                   hidden
                 />
               </div>
-              <div class="modal-footer">
+              <div class="modal-footer justify-content-around">
                 <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
+                  type="submit"
+                  class="btn btn-delete btn-danger"
+                  onclick="chageActionValue(event,'/delete')"
                 >
-                  취소
+                  삭제
                 </button>
                 <button type="submit" class="btn btn-primary">완료</button>
               </div>
@@ -320,18 +320,27 @@
       </div>
 
       <script>
+        form = document.querySelector('#modalForm');
+        function chageActionValue(event, actionType) {
+          event.preventDefault();
+          form.action = actionType;
+          if (actionType == '/create') {
+            document.querySelector('.btn-delete').style.display = 'none';
+          }
+          if (actionType == '/delete') {
+            form.submit();
+          }
+        }
         const modal = document.querySelector('.modal');
         if (modal) {
           modal.addEventListener('show.bs.modal', (event) => {
             const caller = event.relatedTarget;
 
-            document.querySelector('#modalForm').action =
-              caller.dataset.bsAction;
             modal.querySelector('.modal-title').textContent =
               caller.dataset.bsTitle;
 
-            modal.querySelector('.modal-body #data-id').value = 
-             caller.dataset.bsId || '';
+            modal.querySelector('.modal-body #data-id').value =
+              caller.dataset.bsId || '';
             modal.querySelector('.modal-body #data-name').value =
               caller.dataset.bsName || '';
 

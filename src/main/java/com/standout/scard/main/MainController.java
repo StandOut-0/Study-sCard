@@ -27,6 +27,7 @@ public class MainController {
 
 	@PostMapping("/create")
     public String insertPerson(@ModelAttribute MainVO person) {
+		System.out.println(person);
 		mainService.insertPerson(person);
         return "redirect:/";
     }
@@ -34,6 +35,13 @@ public class MainController {
 	@PostMapping("/update")
     public String updatePerson(@ModelAttribute MainVO person) {
 		mainService.updatePerson(person);
+        return "redirect:/";
+    }
+	
+	@PostMapping("/delete")
+    public String deletePerson(@ModelAttribute MainVO person) {
+		System.out.println(person);
+		mainService.deletePerson(person.getId());
         return "redirect:/";
     }
 	

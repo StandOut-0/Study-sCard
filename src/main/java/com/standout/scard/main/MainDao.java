@@ -11,4 +11,5 @@ public interface MainDao {
 
 	void insertPerson(MainVO person);
 	void updatePerson(MainVO person);
+	void deletePerson(int id);
 }

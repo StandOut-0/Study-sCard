@@ -15,6 +15,7 @@ public class MainService {
 
 	public void insertPerson(MainVO item) {maindao.insertPerson(item);}
 	public void updatePerson(MainVO item) {maindao.updatePerson(item);}
+	public void deletePerson(int id) {maindao.deletePerson(id);}
 }
 
 
