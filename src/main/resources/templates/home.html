@@ -248,6 +248,7 @@
                 aria-label="Close"
               ></button>
             </div>
+            <form action="/create" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <div class="input-group mb-2">
                 <span class="input-group-text w-fileLabelWidth">이름</span>
@@ -258,6 +259,7 @@
                   aria-label="Username"
                   aria-describedby="data-name"
                   id="data-name"
+                   name="name"
                 />
               </div>
               <div class="input-group mb-2">
@@ -269,6 +271,7 @@
                   aria-label="Username"
                   aria-describedby="data-cellphone"
                   id="data-cellphone"
+                  name="cellphone"
                 />
               </div>
               <div class="input-group mb-2">
@@ -280,6 +283,7 @@
                   aria-label="Username"
                   aria-describedby="data-email"
                   id="data-email"
+                  name="email"
                 />
               </div>
               <input class="form-control" id="formFileSm" type="file" />
@@ -292,8 +296,9 @@
               >
                 취소
               </button>
-              <button type="button" class="btn btn-primary">완료</button>
+              <button type="submit" class="btn btn-primary">완료</button>
             </div>
+            </form>
           </div>
         </div>
       </div>

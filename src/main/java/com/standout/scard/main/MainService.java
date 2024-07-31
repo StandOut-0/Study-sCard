@@ -12,5 +12,7 @@ public class MainService {
 	
 	public int selectCountAll() {return maindao.selectCountAll();}
 	public List<MainVO> selectPersonAll() {return maindao.selectPersonAll();}
+
+	public void insertPerson(MainVO item) {maindao.insertPerson(item);}
 }
 

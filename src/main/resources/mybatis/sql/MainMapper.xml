@@ -9,4 +9,8 @@
    <select id="selectPersonAll" resultType="com.standout.scard.main.MainVO">
         SELECT * FROM PERSON
     </select>
+
+     <insert id="insertPerson" parameterType="com.standout.scard.main.MainVO">
+        INSERT INTO PERSON (name, cellphone, email) VALUES (#{name}, #{cellphone}, #{email})
+    </insert>
 </mapper>

@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MainDao {
 	int selectCountAll();
 	List<MainVO> selectPersonAll();
+
+	void insertPerson(MainVO person);
 }
